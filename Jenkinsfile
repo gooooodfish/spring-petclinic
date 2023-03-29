@@ -1,9 +1,7 @@
 node {
-  stage('change java'){
-    jdk = tool name: 'Java17'
-    env.JAVA_HOME = "${jdk}"
-    echo "jdk installation path is: ${jdk}"
-  }
+  jdk = tool name: 'Java17'
+  env.JAVA_HOME = "${jdk}"
+  echo "jdk installation path is: ${jdk}"
   stage('SCM') {
     checkout scm
   }

@@ -1,4 +1,7 @@
 node {
+  tools {
+    jdk 'Java17'
+  }
   stage('Peek Java'){
       sh '''
         env | grep -e PATH -e JAVA_HOME

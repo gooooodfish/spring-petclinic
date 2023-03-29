@@ -1,12 +1,10 @@
 node {
   stage('Peek Java'){
-    steps{
       sh '''
         env | grep -e PATH -e JAVA_HOME
         which java
         java -version
       '''
-    }
   }
   stage('SCM') {
     checkout scm

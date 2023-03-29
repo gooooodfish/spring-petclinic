@@ -17,6 +17,5 @@ node {
   stage('BUILD'){
     def mvn = tool 'Default Maven';
     sh "${mvn}/bin/mvn package"
-    sh "java -Dserver.port=8888 -jar target/*.jar"
   }
 }

@@ -14,7 +14,8 @@ node {
     }
   }
   stage('BUILD'){
-    mvn package
-    java -jar target/*.jar
+    def mvn = tool 'Default Maven';
+    sh "${mvn}/bin/mvn package"
+    sh "java -jar target/*.jar"
   }
 }

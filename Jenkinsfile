@@ -1,34 +1,15 @@
-pipeline{
-  agent any
-  tools{
-    jdk 'Java17'
+node {
+  stage('SCM') {
+    checkout scm
   }
-  stages{
-    stage('Peek Java'){
-      steps{
-        sh '''
-          env | grep -e PATH -e JAVA_HOME
-          which java
-          java -version
-        '''
-      }
+  stage('SonarQube Analysis') {
+    jdk = tool name: 'Java17'
+    env.JAVA_HOME = "${jdk}"
 
-    }
-    stage('SCM') {
-      steps{
-        checkout scm
-      }
-    }
-    stage('SonarQube Analysis') {
-      environment{
-        mvn = tool 'Default Maven';
-      }
-
-      steps{
-        withSonarQubeEnv('jenkins') {
-          sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=petclinic"
-        }
-      }
+    echo "jdk installation path is: ${jdk}"
+    def mvn = tool 'Default Maven';
+    withSonarQubeEnv() {
+      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=petclinic"
     }
   }
 }

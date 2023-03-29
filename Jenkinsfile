@@ -25,7 +25,7 @@ pipeline{
       }
 
       steps{
-        withSonarQubeEnv('sonarqube') {
+        withSonarQubeEnv('jenkins') {
           sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=petclinic"
         }
       }

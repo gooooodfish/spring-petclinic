@@ -12,16 +12,6 @@ pipeline{
           java -version
         '''
       }
-    }
-
-    stage('Peek Java'){
-      steps{
-        sh '''
-          env | grep -e PATH -e JAVA_HOME
-          which java
-          java -version
-        '''
-      }
 
     }
     stage('SCM') {
@@ -35,7 +25,7 @@ pipeline{
       }
 
       steps{
-        withSonarQubeEnv() {
+        withSonarQubeEnv('sonarqube') {
           sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=petclinic"
         }
       }

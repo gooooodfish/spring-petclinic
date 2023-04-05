@@ -1,5 +1,5 @@
 node {
-  stage('change java'){
+  stage('Java Version Change'){
     jdk = tool name: 'Java17'
     env.JAVA_HOME = "${jdk}"
     env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
@@ -17,5 +17,6 @@ node {
   stage('BUILD'){
     def mvn = tool 'Default Maven';
     sh "${mvn}/bin/mvn package"
+    sh "java -Dserver.port=8888 -jar target/*.jar"
   }
 }

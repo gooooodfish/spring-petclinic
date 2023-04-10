@@ -9,7 +9,7 @@ node {
     checkout scm
   }
   stage('SonarQube Analysis') {
-    jdk = tool name: 'Java17'
+    jdk = tool name: 'jdk17'
     env.JAVA_HOME = "${jdk}"
     env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
     def mvn = tool 'Default Maven';

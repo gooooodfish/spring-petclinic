@@ -1,6 +1,6 @@
 node {
   stage('Java Version Change'){
-    jdk = tool name: 'jdk17'
+    jdk = tool name: 'JDK-17'
     env.JAVA_HOME = "${jdk}"
     env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
     echo "jdk installation path is: ${jdk}"
@@ -9,7 +9,7 @@ node {
     checkout scm
   }
   stage('SonarQube Analysis') {
-    jdk = tool name: 'jdk17'
+    jdk = tool name: 'JDK-17'
     env.JAVA_HOME = "${jdk}"
     env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
     def mvn = tool 'Default Maven';

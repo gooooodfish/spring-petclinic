@@ -9,6 +9,9 @@ node {
     checkout scm
   }
   stage('SonarQube Analysis') {
+    jdk = tool name: 'Java17'
+    env.JAVA_HOME = "${jdk}"
+    env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
     def mvn = tool 'Default Maven';
     withSonarQubeEnv() {
       sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=petclinic"

@@ -14,7 +14,7 @@ node {
     env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
     def mvn = tool 'Default Maven';
     withSonarQubeEnv() {
-      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=petclinic"
+      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=spring-petclinic -Dsonar.projectName='spring-petclinic'"
     }
   }
   stage('BUILD'){

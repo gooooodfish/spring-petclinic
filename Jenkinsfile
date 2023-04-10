@@ -1,8 +1,8 @@
 node {
   stage('Java Version Change'){
     jdk = tool name: 'jdk17'
-    // env.JAVA_HOME = "${jdk}"
-    // env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
+    env.JAVA_HOME = "${jdk}"
+    env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
     echo "jdk installation path is: ${jdk}"
   }
   stage('SCM') {
@@ -10,8 +10,8 @@ node {
   }
   stage('SonarQube Analysis') {
     jdk = tool name: 'jdk17'
-    // env.JAVA_HOME = "${jdk}"
-    // env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
+    env.JAVA_HOME = "${jdk}"
+    env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
     def mvn = tool 'Default Maven';
     withSonarQubeEnv() {
       sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=petclinic"

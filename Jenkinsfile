@@ -1,6 +1,6 @@
 node {
   stage('Java Version Change'){
-    jdk = tool name: 'Java17'
+    jdk = tool name: 'jdk17'
     env.JAVA_HOME = "${jdk}"
     env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
     echo "jdk installation path is: ${jdk}"

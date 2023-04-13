@@ -11,7 +11,7 @@ node {
   stage('SonarQube Analysis') {
     def mvn = tool 'Default Maven';
     withSonarQubeEnv() {
-      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.login=${SONAR_ID} -Dsonar.password=${SONAR_PASSWORD} -Dsonar.projectKey=petclinic -Dsonar.projectName='petclinic'"
+      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.login=${env.SONAR_ID} -Dsonar.password=${env.SONAR_PASSWORD} -Dsonar.projectKey=petclinic -Dsonar.projectName='petclinic'"
     }
   }
   stage('BUILD'){
